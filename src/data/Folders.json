@@ -1,19 +1,63 @@
 [
-    {
-      "id": "",
-      "name": "Folder 1",
-      "children": [],
-      "files": []
-    },{
-      "id": "",
-      "name": "Folder 2",
-      "children": [],
-      "files": []
-    },
-    {
-      "id": "",
-      "name": "Folder 3",
-      "children": [],
-      "files": []
-    } 
+  {
+    "id": "",
+    "name": "Folder 1",
+    "children": [
+      {
+          "id": "",
+          "name": "Subfolder 1.1",
+          "files": [
+            {
+              "id": "",
+              "title": "Document 1.1",
+              "url": ""
+            }
+          ]
+      }
+    ]
+  },{
+    "id": "",
+    "name": "Folder 2",
+    "children": [
+      {
+        "id": "",
+        "name": "Subfolder 2.1",
+        "files": [
+          {
+            "id": "",
+            "title": "Document 2.1",
+            "url": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "",
+    "name": "Folder 3",
+    "children": [
+      {
+        "id": "",
+        "name": "Subfolder 3.1",
+        "files": [
+          {
+            "id": "",
+            "title": "Document 3.1",
+            "url": ""
+          }
+        ]
+      },
+      {
+        "id": "",
+        "name": "Subfolder 3.2",
+        "files": [
+          {
+            "id": "",
+            "title": "Document 3.2",
+            "url": ""
+          }
+        ]
+      }
+    ]
+  } 
 ]

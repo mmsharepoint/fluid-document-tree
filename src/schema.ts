@@ -21,7 +21,7 @@ const termLeafNodeSchema = builder.object('demo:leaf', {
     local: {
         id: SchemaBuilder.field(FieldKinds.value, string),
         name: SchemaBuilder.field(FieldKinds.value, string),        
-        //files: SchemaBuilder.field(FieldKinds.sequence, fileSchema)
+        files: SchemaBuilder.field(FieldKinds.sequence, fileSchema)
     },
 });
 

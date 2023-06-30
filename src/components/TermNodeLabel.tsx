@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { ITermNodeProps } from './ITermLabelProps';
 import { TermLeafNodeLabel } from './TermLeafNodeLabel';
-import './TermNodeLabel.css'
+import './TermNodeLabel.css';
 
 export const TermNodeLabel: React.FC<ITermNodeProps> = (props) => {
   const [subNodes, setSubNodes] = React.useState<any[]>([]);
@@ -17,7 +17,6 @@ export const TermNodeLabel: React.FC<ITermNodeProps> = (props) => {
       setSubNodes(subNodesArray);
     }
   }, []);
-  
   
   return (
     <li className='TermNodeLabel'>

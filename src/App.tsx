@@ -34,7 +34,8 @@ const createContainer = async () => {
   
   const { container } = await client.createContainer(containerSchema);
   const containerId = await container.attach();
-  const mockNodes = [
+  const mockNodes = require('./data/Folders.json');
+  /*const mockNodes = [
     {
       "id": "",
       "name": "Folder 1",
@@ -47,14 +48,28 @@ const createContainer = async () => {
     },{
       "id": "",
       "name": "Folder 2",
-      "children": []
+      "children": [
+        {
+          "id": "",
+          "name": "Subfolder 2.1"
+        }
+      ]
     },
     {
       "id": "",
       "name": "Folder 3",
-      "children": []
+      "children": [
+        {
+          "id": "",
+          "name": "Subfolder 3.1"
+        },
+        {
+          "id": "",
+          "name": "Subfolder 3.2"
+        }
+      ]
     } 
-  ];
+  ]; */
   // Initialize tree
   const sharedVotes = container.initialObjects.tree as ISharedTree;
   sharedVotes.schematize({ schema,

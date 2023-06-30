@@ -1,0 +1,9 @@
+.FileNode {
+    list-style: none;
+    text-align: left;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}

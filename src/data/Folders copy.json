@@ -1,0 +1,37 @@
+[
+    {
+      "id": "",
+      "name": "Folder 1",
+      "children": [
+        {
+            "id": "",
+            "name": "Subfolder 1.1",
+            "files": []
+        }
+      ],
+      "files": []
+    },{
+      "id": "",
+      "name": "Folder 2",
+      "children": [
+        {
+            "id": "",
+            "name": "Subfolder 2.1",
+            "files": []
+        }
+      ],
+      "files": []
+    },
+    {
+      "id": "",
+      "name": "Folder 3",
+      "children": [
+        {
+            "id": "",
+            "name": "Subfolder 3.1",
+            "files": []
+        }
+      ],
+      "files": []
+    } 
+]

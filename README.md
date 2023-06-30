@@ -44,3 +44,11 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+Added:
+
+npm i fluid-framework@2.0.0-internal.5.0.1
+
+npm i @fluidframework/tinylicious-client@2.0.0-internal.5.0.1
+
+npm i @fluid-experimental/tree2@2.0.0-internal.5.0.1

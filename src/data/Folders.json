@@ -1,14 +1,14 @@
 [
   {
-    "id": "",
+    "id": "8760a00d-cee2-47ec-9e3f-dbfbc55baf5a",
     "name": "Folder 1",
     "children": [
       {
-          "id": "",
+          "id": "c23fa359-9c53-47ec-8a3f-8c2e2e8f836d",
           "name": "Subfolder 1.1",
           "files": [
             {
-              "id": "",
+              "id": "1",
               "title": "Document 1.1",
               "url": ""
             }
@@ -16,43 +16,39 @@
       }
     ]
   },{
-    "id": "",
+    "id": "635ca431-0d94-46bc-80e3-7b0d4e2537cd",
     "name": "Folder 2",
     "children": [
       {
-        "id": "",
+        "id": "9219c3c9-90ac-4c46-bb42-8636bb559c7c",
         "name": "Subfolder 2.1",
         "files": [
-          {
-            "id": "",
-            "title": "Document 2.1",
-            "url": ""
-          }
+          
         ]
       }
     ]
   },
   {
-    "id": "",
+    "id": "cbe64862-7086-4534-b40f-5b6a40d27647",
     "name": "Folder 3",
     "children": [
       {
-        "id": "",
+        "id": "8808f71d-4af3-47b7-9fe6-8373b2d8848a",
         "name": "Subfolder 3.1",
         "files": [
           {
-            "id": "",
+            "id": "32",
             "title": "Document 3.1",
             "url": ""
           }
         ]
       },
       {
-        "id": "",
+        "id": "6d9c4439-5012-44b3-be94-faffc49f4e01",
         "name": "Subfolder 3.2",
         "files": [
           {
-            "id": "",
+            "id": "33",
             "title": "Document 3.2",
             "url": ""
           }

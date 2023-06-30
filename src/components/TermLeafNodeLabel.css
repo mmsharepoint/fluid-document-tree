@@ -2,3 +2,6 @@
     list-style: none;
     text-align: left;
 }
+.dragEnter {
+    background-color: "#c7e0f4";
+}

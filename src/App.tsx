@@ -1,8 +1,8 @@
 import React from 'react';
 
 import './App.css';
-import { TermNodeLabel } from './components/TermNodeLabel';
-import { loadFluidData } from './services/FluidService';
+import { loadFluidData, useTree } from './services/FluidService';
+import { Tree } from './Tree';
 
 const moveFile = () => {
   
@@ -21,17 +21,11 @@ const moveFile = () => {
 }; */
 
 export const App: React.FC<any> = (props) => {
-  const [nodes, setNodes] = React.useState<any[]>([]);
+  const [nodes, setNodes] = React.useState<any>();
   loadFluidData()
     .then(({container, data}) => {
-      const nodesArray = [];
-      // data = loadData(data);
-      for (const p of data.root.terms) {
-        nodesArray.push(
-          <TermNodeLabel key={p.id} node={p} />
-        );
-      }
-      setNodes(nodesArray);
+      const rootTree = <Tree data={data} container={container} />;
+      setNodes(rootTree);
     });
   return (
     <div className="App">

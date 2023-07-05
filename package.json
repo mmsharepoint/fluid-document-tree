@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@fluid-experimental/tree2": "^2.0.0-internal.5.0.1",
+    "@fluidframework/azure-client": "^2.0.0-internal.5.0.1",
     "@fluidframework/tinylicious-client": "^2.0.0-internal.5.0.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",

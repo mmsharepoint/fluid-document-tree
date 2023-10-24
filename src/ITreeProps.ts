@@ -1,8 +1,10 @@
 import { IFluidContainer } from "fluid-framework";
 import { SharedTree } from "./services/FluidService";
-import { RootApp } from "./schema";
+import { FileNode, RootApp, TermLeafNode } from "./schema";
 
 export interface ITreeProps {
-    data: SharedTree<RootApp>;
+    data: RootApp;
     container: IFluidContainer;
+    insertFile: (termIndex: number, leafIndex: number, file: any) => void;
+    moveFile: (fileIndex: number, sourceNodeParentIndex: number, sourceNodeIndex: number, destinationNode: TermLeafNode, file: FileNode) => void;
 }

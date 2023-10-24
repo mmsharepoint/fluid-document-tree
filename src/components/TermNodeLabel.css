@@ -2,3 +2,6 @@
     list-style: none;
     text-align: left;
 }
+.DragBorder {
+    border: 1px solid;
+}

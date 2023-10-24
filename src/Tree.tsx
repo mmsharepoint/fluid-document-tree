@@ -1,16 +1,16 @@
 import React from 'react';
-import { useTree } from './services/FluidService';
 import { ITreeProps } from "./ITreeProps";
 import { TermNodeLabel } from './components/TermNodeLabel';
 
-export const Tree: React.FC<ITreeProps> = (props) => {
-    const root = useTree(props.data);
+export const Tree: React.FC<ITreeProps> = (props) => {    
     const nodesArray = [];
-    for (const p of root.terms) {
-    nodesArray.push(
-        <TermNodeLabel key={p.id} node={p} />
-    );
+
+    for (const p of props.data.terms) {
+        nodesArray.push(
+            <TermNodeLabel key={p.id} node={p} insertFile={props.insertFile} moveFile={props.moveFile}/>
+        );
     }
+
     return (
         <ul>{nodesArray}</ul>
     );

@@ -1,5 +1,5 @@
 import {
-    FieldKinds,
+    AllowedUpdateType,
     SchemaAware,
     SchemaBuilder,
     ValueSchema,
@@ -7,40 +7,32 @@ import {
 
 const builder = new SchemaBuilder('fc1db2e8-0a00-11ee-be56-0242ac120002');
 
-export const string = builder.primitive('string', ValueSchema.String);
+export const string = builder.leaf('string', ValueSchema.String);
 
-export const fileSchema = builder.object('demo:file', {
-    local: {
-        id: SchemaBuilder.field(FieldKinds.value, string),
-        title: SchemaBuilder.field(FieldKinds.value, string),
-        url: SchemaBuilder.field(FieldKinds.value, string)
-    }
+export const fileSchema = builder.struct('demo:file', {
+    id: SchemaBuilder.fieldValue(string),
+    title: SchemaBuilder.fieldValue(string),
+    url: SchemaBuilder.fieldValue(string)
 });
 
-const termLeafNodeSchema = builder.object('demo:leaf', {
-    local: {
-        id: SchemaBuilder.field(FieldKinds.value, string),
-        name: SchemaBuilder.field(FieldKinds.value, string),        
-        files: SchemaBuilder.field(FieldKinds.sequence, fileSchema)
-    },
+const termLeafNodeSchema = builder.struct('demo:leaf', {
+    id: SchemaBuilder.fieldValue(string),
+    name: SchemaBuilder.fieldValue(string),
+    files: SchemaBuilder.fieldSequence(fileSchema)
 });
 
-const termNodeSchema = builder.object('demo:node', {
-    local: {
-        id: SchemaBuilder.field(FieldKinds.value, string),
-        name: SchemaBuilder.field(FieldKinds.value, string),
-        children: SchemaBuilder.field(FieldKinds.sequence, termLeafNodeSchema)
-    },
+const termNodeSchema = builder.struct('demo:node', {
+    id: SchemaBuilder.fieldValue(string),
+    name: SchemaBuilder.fieldValue(string),
+    children: SchemaBuilder.fieldSequence(termLeafNodeSchema)
 });
 
-export const appSchema = builder.object('demo:app', {
-    local: {
-        terms: SchemaBuilder.field(FieldKinds.sequence, termNodeSchema),
-    },
+export const appSchema = builder.struct('demo:app', {
+    terms: SchemaBuilder.fieldSequence(termNodeSchema)
 });
 
 // Define the root of the schema as the app type.
-export const rootField = SchemaBuilder.field(FieldKinds.value, appSchema);
+export const rootField = SchemaBuilder.fieldValue(appSchema);
 
 // Create the schema object to pass into the SharedTree
 export const schema = builder.intoDocumentSchema(rootField);
@@ -50,3 +42,17 @@ export type RootApp = SchemaAware.TypedNode<typeof appSchema>;
 export type TermNode = SchemaAware.TypedNode<typeof termNodeSchema>;
 export type TermLeafNode = SchemaAware.TypedNode<typeof termLeafNodeSchema>;
 export type FileNode = SchemaAware.TypedNode<typeof fileSchema>;
+
+export const schemaConfig = {
+    schema,
+    initialTree: {
+        terms: [
+            {
+                id: '',
+                name: '',
+                children: []
+            }            
+        ]
+    },
+    allowedSchemaModifications: AllowedUpdateType.SchemaCompatible
+}

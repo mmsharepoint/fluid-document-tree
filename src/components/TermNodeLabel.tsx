@@ -13,12 +13,12 @@ export const TermNodeLabel: React.FC<ITermNodeProps> = (props) => {
       
       for (const s of props.node.children) {
         subNodesArray.push(
-          <TermLeafNodeLabel key={s.id} node={s} parentIndex={props.node[parentField].index} insertFile={props.insertFile} moveFile={props.moveFile}/>
+          <TermLeafNodeLabel key={s.id} node={s} parentIndex={props.node[parentField].index} />
         );
       }
       setSubNodes(subNodesArray);
     }
-  }, [props.node.children]);
+  }, [props.node.children.length]);
   
   return (
     <li className='TermNodeLabel'>

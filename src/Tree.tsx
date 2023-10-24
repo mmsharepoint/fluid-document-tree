@@ -7,7 +7,7 @@ export const Tree: React.FC<ITreeProps> = (props) => {
 
     for (const p of props.data.terms) {
         nodesArray.push(
-            <TermNodeLabel key={p.id} node={p} insertFile={props.insertFile} moveFile={props.moveFile}/>
+            <TermNodeLabel key={p.id} node={p} />
         );
     }
 

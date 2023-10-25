@@ -42,7 +42,7 @@ const tenantId = process.env.REACT_APP_TENANT_ID!
 // const remoteConnectionConfig: AzureRemoteConnectionConfig = {
 //     type: 'remote',
 //     tenantId: tenantId,
-//     tokenProvider: new InsecureTokenProvider(process.env.REACT_APP_TENANT_KEY!, { id: "John Doe", name: "John Doe"}),
+//     tokenProvider: new (process.env.REACT_APP_TENANT_KEY!, { id: "John Doe", name: "John Doe"}),
 //     endpoint: process.env.REACT_APP_ORDERER!,
 // };
 const remoteConnectionConfig: AzureRemoteConnectionConfig = {

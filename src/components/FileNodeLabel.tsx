@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useDrag } from 'react-dnd';
 import { IFileNodeProps } from './IFileNodeProps';
 import './FileNode.css';
-import { parentField } from '@fluid-experimental/tree2';
 
 export const FileNodeLabel: React.FC<IFileNodeProps> = (props) => {
   // const drag = React.useCallback((ev: React.DragEvent<HTMLElement>)=> {

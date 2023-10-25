@@ -1,6 +1,39 @@
-# Getting Started with Create React App
+# fluid-document-document-tree
+A React DnD app featuring the new Fluid Framework 2.0 (alpha) SharedTree DDS
+
+## Summary
+
+This sample is a React DnD app featuring the new Fluid Framework 2.0 (alpha). It shows a imaginary File/Folder structure that allows to drag&drop files from one subfolder to another while staying in-sync with different browsers/windows in real-time.
+
+App synchronously in action in two browsers
+
+![App synchronously in action in two browsers](assets/01FileMoveInAction_Parallel.gif)
+
+## Tools and Frameworks
+
+![drop](https://img.shields.io/badge/Fluid&nbsp;Framework-2.0-green.svg)
+
+## Applies to
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Version history
+
+Version|Date|Author|Comments
+-------|----|--------|--------
+1.0|Nov xx, 2023|[Markus Moeller](http://www.twitter.com/moeller2_0)|Initial release
+
+## Disclaimer
+
+**THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.**
+
+---
+
+## Features
+A React DnD app featuring the new Fluid Framework 2.0 (alpha) SharedTree DDS
+* Using [Fluid Framework 2.0 (alpha)](https://devblogs.microsoft.com/microsoft365dev/fluid-framework-2-0-alpha-is-now-available/)
+* Using new SharedTree Distributes Data Structure (DDS)
+* Using [React DnD](https://react-dnd.github.io/react-dnd/docs/overview) for enabling type-safe drag&drop
 
 ## Available Scripts
 

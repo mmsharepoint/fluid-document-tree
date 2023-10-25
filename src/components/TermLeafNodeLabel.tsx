@@ -6,8 +6,6 @@ import { FileNodeLabel } from './FileNodeLabel';
 import { parentField } from '@fluid-experimental/tree2';
 
 export const TermLeafNodeLabel: React.FC<ITermLeafNodeProps> = (props) => {
-  const [files, setFiles] = React.useState<any[]>([]);
-
   const moveFile = (item: any) => {
     console.log(item.file);
     console.log(item.file.title);
@@ -29,16 +27,13 @@ export const TermLeafNodeLabel: React.FC<ITermLeafNodeProps> = (props) => {
     drop: (item) => { moveFile(item); }
   }));
 
-  React.useEffect(() => {
-    const filesArray = [];
-    
-    for (const f of props.node.files) {
-      filesArray.push(
-        <FileNodeLabel key={f.id} node={props.node} parentIndex={props.node[parentField].index} grandParentIndex={props.parentIndex} file={f} fileIndex={f[parentField].index} />
-      );
-    }
-    setFiles(filesArray);
-  }, [props.node.files.length]);
+  const filesArray = [];
+  
+  for (const f of props.node.files) {
+    filesArray.push(
+      <FileNodeLabel key={f.id} node={props.node} parentIndex={props.node[parentField].index} grandParentIndex={props.parentIndex} file={f} fileIndex={f[parentField].index} />
+    );
+  }
 
   return (
     <li ref={drop} className={`${isOver ? 'DragBorder' : ''} TermLeafNodeLabel`}>
@@ -46,7 +41,7 @@ export const TermLeafNodeLabel: React.FC<ITermLeafNodeProps> = (props) => {
         <label>{props.node.name}</label>
       </div>
       <ul>
-        {files}
+        {filesArray}
       </ul>
     </li>
   );

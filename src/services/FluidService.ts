@@ -3,7 +3,8 @@ import {
     AzureRemoteConnectionConfig,
     AzureLocalConnectionConfig,
     AzureContainerServices,
-    AzureClientProps
+    AzureClientProps,
+    AzureFunctionTokenProvider
 } from '@fluidframework/azure-client';
 
 import {
@@ -38,11 +39,20 @@ if (!useAzure) {
 }
 
 const tenantId = process.env.REACT_APP_TENANT_ID!
+// const remoteConnectionConfig: AzureRemoteConnectionConfig = {
+//     type: 'remote',
+//     tenantId: tenantId,
+//     tokenProvider: new InsecureTokenProvider(process.env.REACT_APP_TENANT_KEY!, { id: "John Doe", name: "John Doe"}),
+//     endpoint: process.env.REACT_APP_ORDERER!,
+// };
 const remoteConnectionConfig: AzureRemoteConnectionConfig = {
     type: 'remote',
     tenantId: tenantId,
-    tokenProvider: new InsecureTokenProvider(process.env.REACT_APP_TENANT_KEY!, { id: "John Doe", name: "John Doe"}),
-    endpoint: process.env.REACT_APP_ORDERER!,
+    tokenProvider: new AzureFunctionTokenProvider(
+        process.env.REACT_APP_TOKEN_PROVIDER_URL!,
+        { userId: "John Doe", userName: "John Doe"}
+    ),
+    endpoint: process.env.REACT_APP_ORDERER!
 };
 
 const localConnectionConfig: AzureLocalConnectionConfig = {

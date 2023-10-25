@@ -14,6 +14,7 @@ env:
   REACT_APP_TENANT_ID: ${{ secrets.TENANT_ID }} # (from Azure Fluid Relay)
   REACT_APP_ORDERER: https://eu.fluidrelay.azure.com
   REACT_APP_TENANT_KEY: ${{ secrets.TENANT_KEY }} # (from Azure Fluid Relay)
+  REACT_APP_TOKEN_PROVIDER_URL: ${{ secrets.TOKEN_PROVIDER_URL }} # (Azure Function acting as Token Provider)
 
 jobs:
   build:

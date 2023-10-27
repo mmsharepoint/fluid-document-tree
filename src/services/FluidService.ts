@@ -8,17 +8,16 @@ import {
 } from '@fluidframework/azure-client';
 
 import {
-    AllowedUpdateType,
-    FieldSchema,
     ISharedTree,
     ISharedTreeView,
     InitializeAndSchematizeConfiguration,
     SharedTreeFactory,
+    TreeFieldSchema,
 } from '@fluid-experimental/tree2';
-import { IFluidContainer } from 'fluid-framework';
+import { ContainerSchema, IFluidContainer } from 'fluid-framework';
 import { InsecureTokenProvider } from '@fluidframework/test-runtime-utils';
 import React from "react";
-import { RootApp, schema } from '../schema';
+import { RootApp } from '../schema';
 
 // const client = new TinyliciousClient();
 
@@ -28,7 +27,7 @@ export class MySharedTree {
     }
 }
 
-const containerSchema = {
+const containerSchema: ContainerSchema = {
     initialObjects: { tree: MySharedTree }
 };
 
@@ -71,7 +70,7 @@ const clientProps: AzureClientProps = {
 const client = new AzureClient(clientProps);
 // const client = new TinyliciousClient();
 
-async function initializeNewContainer<TRoot extends FieldSchema>(
+async function initializeNewContainer<TRoot extends TreeFieldSchema>(
     container: IFluidContainer,
     config: InitializeAndSchematizeConfiguration<TRoot>
 ): Promise<void> {
@@ -79,7 +78,7 @@ async function initializeNewContainer<TRoot extends FieldSchema>(
     fluidTree.schematize(config);
 }
 
-export const loadFluidData = async <TRoot extends FieldSchema>(
+export const loadFluidData = async <TRoot extends TreeFieldSchema>(
     config: InitializeAndSchematizeConfiguration<TRoot>
 ): Promise<{
     data: SharedTree<RootApp>;
@@ -113,12 +112,8 @@ export const loadFluidData = async <TRoot extends FieldSchema>(
     }
 
     const tree = container.initialObjects.tree as ISharedTree;
-    const view = tree.schematize({ schema,
-          initialTree: {
-            terms: [],
-          },
-          allowedSchemaModifications: AllowedUpdateType.SchemaCompatible});
-    const data = new SharedTree<RootApp>(view, view.root as any);    
+    const view = tree.schematizeView(config);
+    const data = new SharedTree<RootApp>(view, view.root2(config.schema) as any);
 
     return { data, services, container };
 };

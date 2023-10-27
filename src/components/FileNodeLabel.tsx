@@ -6,7 +6,7 @@ import './FileNode.css';
 export const FileNodeLabel: React.FC<IFileNodeProps> = (props) => {  
   const [ , drag] = useDrag(() => ({
     type: 'FileNodeLabel',
-    item: { file: props.file, parent: props.node },
+    item: { file: props.file, files: props.files },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
     }),

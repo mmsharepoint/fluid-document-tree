@@ -1,49 +1,49 @@
 import {
     AllowedUpdateType,
-    SchemaAware,
+    InitializeAndSchematizeConfiguration,
+    ProxyNode,
     SchemaBuilder,
-    ValueSchema,
 } from '@fluid-experimental/tree2';
 
-const builder = new SchemaBuilder('fc1db2e8-0a00-11ee-be56-0242ac120002');
+const builder = new SchemaBuilder({scope: 'fc1db2e8-0a00-11ee-be56-0242ac120002'});
 
-export const string = builder.leaf('string', ValueSchema.String);
+// export const string = builder.leaf('string', ValueSchema.String);
 
-export const fileSchema = builder.struct('demo:file', {
-    id: SchemaBuilder.fieldValue(string),
-    title: SchemaBuilder.fieldValue(string),
-    url: SchemaBuilder.fieldValue(string)
+export const fileSchema = builder.object('file', {
+    id: builder.string,
+    title: builder.string,
+    url: builder.string
 });
 
-const termLeafNodeSchema = builder.struct('demo:leaf', {
-    id: SchemaBuilder.fieldValue(string),
-    name: SchemaBuilder.fieldValue(string),
-    files: SchemaBuilder.fieldSequence(fileSchema)
+export const fileNodesSchema = builder.list(fileSchema);
+
+const termLeafNodeSchema = builder.object('leaf', {
+    id: builder.string,
+    name: builder.string,
+    files: fileNodesSchema
 });
 
-const termNodeSchema = builder.struct('demo:node', {
-    id: SchemaBuilder.fieldValue(string),
-    name: SchemaBuilder.fieldValue(string),
-    children: SchemaBuilder.fieldSequence(termLeafNodeSchema)
+const termNodeSchema = builder.object('node', {
+    id: builder.string,
+    name: builder.string,
+    children: builder.list(termLeafNodeSchema)
 });
 
-export const appSchema = builder.struct('demo:app', {
-    terms: SchemaBuilder.fieldSequence(termNodeSchema)
+export const appSchema = builder.object('app', {
+    terms: builder.list(termNodeSchema)
 });
-
-// Define the root of the schema as the app type.
-export const rootField = SchemaBuilder.fieldValue(appSchema);
-
-// Create the schema object to pass into the SharedTree
-export const schema = builder.intoDocumentSchema(rootField);
 
 // Export the types defined here as TypeScript types.
-export type RootApp = SchemaAware.TypedNode<typeof appSchema>;
-export type TermNode = SchemaAware.TypedNode<typeof termNodeSchema>;
-export type TermLeafNode = SchemaAware.TypedNode<typeof termLeafNodeSchema>;
-export type FileNode = SchemaAware.TypedNode<typeof fileSchema>;
+export type RootApp = ProxyNode<typeof appSchema>;
+export type TermNode =ProxyNode<typeof termNodeSchema>;
+export type TermLeafNode = ProxyNode<typeof termLeafNodeSchema>;
+export type FileNodes = ProxyNode<typeof fileNodesSchema>;
+export type FileNode = ProxyNode<typeof fileSchema>;
 
-export const schemaConfig = {
+// Create the schema object to pass into the SharedTree
+export const schema = builder.intoSchema(appSchema);
+
+export const schemaConfig: InitializeAndSchematizeConfiguration = {
     schema,
     initialTree: {
         terms: [

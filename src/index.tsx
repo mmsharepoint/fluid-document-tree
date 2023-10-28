@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(
 
 async function main() {
   const mockNodes: any[] = require('./data/Folders.json');
-  schemaConfig.initialTree.terms = mockNodes;
+  schemaConfig.initialTree!.terms = mockNodes;
   const { data, services, container } = await loadFluidData(schemaConfig);
 
   root.render(

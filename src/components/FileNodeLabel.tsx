@@ -14,7 +14,7 @@ export const FileNodeLabel: React.FC<IFileNodeProps> = (props) => {
   return (
     <li ref={drag} className='FileNode'>
       {/* <Icon {...getFileTypeIconProps({ extension: props.file.extension, size: 16 })} /> */}
-      <a href={props.file.url}>{props.file.title}</a>
+      <a href={props.file.url}>&nbsp;{props.file.title}</a>
     </li>
   );
 }

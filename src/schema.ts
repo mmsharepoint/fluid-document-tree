@@ -26,7 +26,8 @@ const termLeafNodeSchema = builder.object('leaf', {
 const termNodeSchema = builder.object('node', {
     id: builder.string,
     name: builder.string,
-    children: builder.list(termLeafNodeSchema)
+    children: builder.list(termLeafNodeSchema),
+    files: fileNodesSchema
 });
 
 export const appSchema = builder.object('app', {
@@ -50,7 +51,8 @@ export const schemaConfig: InitializeAndSchematizeConfiguration = {
             {
                 id: '',
                 name: '',
-                children: []
+                children: [],
+                files: []
             }            
         ]
     },

@@ -6,10 +6,6 @@ import { FileNodeLabel } from './FileNodeLabel';
 
 export const TermLeafNodeLabel: React.FC<ITermLeafNodeProps> = (props) => {
   const moveFile = (item: any) => {
-    console.log(item.file);
-    console.log(item.file.title);
-    console.log(item.file.id);
-    console.log(item.file.url);
     const srcFileArray = item.files;
     const index = srcFileArray.indexOf(item.file);
     props.node.files.moveToIndex(props.node.files.length, index, index+1, srcFileArray);

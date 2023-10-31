@@ -1,17 +1,18 @@
 import * as React from 'react';
 import {  } from '@fluid-experimental/tree2';
 import { ITermNodeProps } from './ITermLabelProps';
-import { TermLeafNodeLabel } from './TermLeafNodeLabel';
+import { TermNode } from '../schema';
 import './TermNodeLabel.css';
 import { FileNodeLabel } from './FileNodeLabel';
 import { useDrop } from 'react-dnd';
 
 export const TermNodeLabel: React.FC<ITermNodeProps> = (props) => {
   const subNodesArray = [];
-  if (props.node.children.length > 0) {
+  if ('children' in props.node && props.node.children.length > 0) {
     for (const s of props.node.children) {
       subNodesArray.push(
-        <TermLeafNodeLabel key={s.id} node={s} />
+        // <TermLeafNodeLabel key={s.id} node={s} />
+        <TermNodeLabel key={s.id} node={s} />
       );
     }
   }
@@ -23,7 +24,7 @@ export const TermNodeLabel: React.FC<ITermNodeProps> = (props) => {
     console.log(item.file.url);
     const srcFileArray = item.files;
     const index = srcFileArray.indexOf(item.file);
-    props.node.files.moveToIndex(props.node.files.length, index, index+1, srcFileArray);
+    props.node.files.moveToIndex(props.node.files.length, index, srcFileArray);
   };
 
   const [{ isOver }, drop] = useDrop(() => ({

@@ -1,5 +1,5 @@
-import { TermNode } from "../schema";
+import { TermLeafNode, TermNode } from "../schema";
 
 export interface ITermNodeProps {
-    node: TermNode;
+    node: TermNode | TermLeafNode;
 }

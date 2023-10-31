@@ -23,10 +23,12 @@ const termLeafNodeSchema = builder.object('leaf', {
     files: fileNodesSchema
 });
 
+export const termLeafNodesSchema = builder.list(termLeafNodeSchema);
+
 const termNodeSchema = builder.object('node', {
     id: builder.string,
     name: builder.string,
-    children: builder.list(termLeafNodeSchema),
+    children: termLeafNodesSchema,
     files: fileNodesSchema
 });
 

@@ -8,7 +8,7 @@ export const TermLeafNodeLabel: React.FC<ITermLeafNodeProps> = (props) => {
   const moveFile = (item: any) => {
     const srcFileArray = item.files;
     const index = srcFileArray.indexOf(item.file);
-    props.node.files.moveToIndex(props.node.files.length, index, index+1, srcFileArray);
+    props.node.files.moveToIndex(props.node.files.length, index, srcFileArray);
   };
 
   const [{ isOver }, drop] = useDrop(() => ({

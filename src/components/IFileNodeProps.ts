@@ -1,4 +1,4 @@
-import { FileNode, FileNodes, TermLeafNode } from "../schema";
+import { FileNode, FileNodes } from "../schema";
 
 export interface IFileNodeProps {
     file: FileNode;    

@@ -1,7 +1,5 @@
 import * as React from 'react';
-import {  } from '@fluid-experimental/tree2';
 import { ITermNodeProps } from './ITermLabelProps';
-import { TermNode } from '../schema';
 import './TermNodeLabel.css';
 import { FileNodeLabel } from './FileNodeLabel';
 import { useDrop } from 'react-dnd';

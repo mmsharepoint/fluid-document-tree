@@ -1,62 +1,85 @@
 import {
-    AllowedUpdateType,
-    InitializeAndSchematizeConfiguration,
-    ProxyNode,
-    SchemaBuilder,
-} from '@fluid-experimental/tree2';
+    TreeConfiguration,
+    SchemaFactory,
+} from 'fluid-framework';
+import { ITerm } from './model/ITerm';
 
-const builder = new SchemaBuilder({scope: 'fc1db2e8-0a00-11ee-be56-0242ac120002'});
+const sf = new SchemaFactory('fc1db2e8-0a00-11ee-be56-0242ac120002');
 
-// export const string = builder.leaf('string', ValueSchema.String);
+export class FileNode extends sf.object('FileNode', {
+    id: sf.string,
+    title: sf.string,
+    url: sf.string,
+}) {}
 
-export const fileSchema = builder.object('file', {
-    id: builder.string,
-    title: builder.string,
-    url: builder.string
-});
+export class FileNodes extends sf.array("FileNodes", FileNode) {}
 
-export const fileNodesSchema = builder.list(fileSchema);
+export class TermLeafNode extends sf.object('TermLeafNode', {
+    id: sf.string,
+    name: sf.string,
+    files: FileNodes
+}) {}
 
-const termLeafNodeSchema = builder.object('leaf', {
-    id: builder.string,
-    name: builder.string,
-    files: fileNodesSchema
-});
+export class TermLeafNodes extends sf.array("TermLeafNodes", TermLeafNode) {}
 
-export const termLeafNodesSchema = builder.list(termLeafNodeSchema);
+export class TermNode extends sf.object('TermNode', {
+    id: sf.string,
+    name: sf.string,
+    children: TermLeafNodes,
+    files: FileNodes
+}) {}
 
-const termNodeSchema = builder.object('node', {
-    id: builder.string,
-    name: builder.string,
-    children: termLeafNodesSchema,
-    files: fileNodesSchema
-});
+export class TermNodes extends sf.array("terms", TermNode) {
+    public addTermNode(node: ITerm): TermNode {
+		const termNode = new TermNode({
+			id: node.id,
+			name: node.name,
+            children: node.children,
+			files: []
+		});
 
-export const appSchema = builder.object('app', {
-    terms: builder.list(termNodeSchema)
-});
+		this.insertAtEnd(termNode);
+		return termNode;
+	}
+}
 
 // Export the types defined here as TypeScript types.
-export type RootApp = ProxyNode<typeof appSchema>;
-export type TermNode =ProxyNode<typeof termNodeSchema>;
-export type TermLeafNode = ProxyNode<typeof termLeafNodeSchema>;
-export type FileNodes = ProxyNode<typeof fileNodesSchema>;
-export type FileNode = ProxyNode<typeof fileSchema>;
+// export type RootApp = ProxyNode<typeof appSchema>;
+// export type TermNode = ProxyNode<typeof termNodeSchema>;
+// export type TermLeafNodes = ProxyNode<typeof termLeafNodesSchema>;
+// export type TermLeafNode = ProxyNode<typeof termLeafNodeSchema>;
+// export type FileNodes = ProxyNode<typeof fileNodesSchema>;
+// export type FileNode = ProxyNode<typeof fileSchema>;
 
 // Create the schema object to pass into the SharedTree
-export const schema = builder.intoSchema(appSchema);
+// export const schema = builder.intoSchema(appSchema);
 
-export const schemaConfig: InitializeAndSchematizeConfiguration = {
-    schema,
-    initialTree: {
-        terms: [
-            {
-                id: '',
-                name: '',
-                children: [],
-                files: []
-            }            
-        ]
-    },
-    allowedSchemaModifications: AllowedUpdateType.SchemaCompatible
-}
+// export const schemaConfig: InitializeAndSchematizeConfiguration = {
+//     schema,
+//     initialTree: {
+//         terms: [
+//             {
+//                 id: '',
+//                 name: '',
+//                 children: [],
+//                 files: []
+//             }            
+//         ]
+//     },
+//     allowedSchemaModifications: AllowedUpdateType.SchemaCompatible
+// }
+
+// Define a root type.
+export class RootApp extends sf.object("App", {
+	items: TermNodes,
+}) {}
+
+// Export the tree config appropriate for this schema
+// This is passed into the SharedTree when it is initialized
+export const appTreeConfiguration = new TreeConfiguration(
+	RootApp, // root node
+	() => ({
+		// initial tree
+		items: [],
+	}),
+);

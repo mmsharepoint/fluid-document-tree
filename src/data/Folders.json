@@ -1,4 +1,5 @@
-[
+{
+  "nodes": [
   {
     "id": "8760a00d-cee2-47ec-9e3f-dbfbc55baf5a",
     "name": "Folder 1",
@@ -14,6 +15,13 @@
             }
           ]
       }
+    ],
+    "files": [
+      {
+        "id": "123",
+        "title": "Document 1",
+        "url": ""
+      }
     ]
   },{
     "id": "635ca431-0d94-46bc-80e3-7b0d4e2537cd",
@@ -25,6 +33,13 @@
         "files": [
           
         ]
+      }
+    ],
+    "files": [
+      {
+        "id": "124",
+        "title": "Document 2",
+        "url": ""
       }
     ]
   },
@@ -54,6 +69,8 @@
           }
         ]
       }
-    ]
+    ],
+    "files": []
   } 
 ]
+}

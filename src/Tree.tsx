@@ -5,7 +5,9 @@ import { TermNodeLabel } from './components/TermNodeLabel';
 export const Tree: React.FC<ITreeProps> = (props) => {    
     const nodesArray = [];
 
-    for (const p of props.data.terms) {
+    const items = props.data.items;
+
+    for (const p of props.data.items) {
         nodesArray.push(
             <TermNodeLabel key={p.id} node={p} />
         );

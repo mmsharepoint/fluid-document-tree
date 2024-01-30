@@ -1,9 +1,6 @@
-import { FileNode, TermLeafNode } from "../schema";
+import { FileNode, FileNodes } from "../schema";
 
 export interface IFileNodeProps {
-    file: FileNode;
-    node: TermLeafNode;
-    parentIndex: number;
-    grandParentIndex: number;
-    fileIndex: number;
+    file: FileNode;    
+    files: FileNodes;
 }
